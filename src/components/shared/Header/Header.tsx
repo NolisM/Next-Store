@@ -1,29 +1,32 @@
-import Link from "next/link";
-import styles from "./Header.module.css"
+import Link from 'next/link'
+import { validateAccessToken } from 'app/utils/auth/validateAccessToken'
+import styles from './Header.module.sass'
+import dynamic from 'next/dynamic'
 
-export const Header = () => {
+const NoSSRShoppingCart = dynamic(() => import('../ShoppingCart'), { ssr: false })
+
+export const Header = async () => {
+  const customer = await validateAccessToken()
 
   return (
-    <header className={styles.Header__list}>
+    <header className={styles.Header}>
       <nav>
-        <ul>
-          <a className={styles.Items} href="/">
-            <li>
+        <ul className={styles.Header__list}>
+          <li>
+            <Link href="/">
               Home
-            </li>
-          </a>
-          <a className={styles.Items} href="/Store">
-            <li>
+            </Link>
+          </li>
+          <li>
+            <Link href="/Store">
               Store
-            </li>
-          </a>
-          <a className={styles.Items} href="/test">
-            <li>
-              Test
-            </li>
-          </a>
+            </Link>
+          </li>
         </ul>
       </nav>
-    </header>
-  )
+      <div className={styles.Header__user}>
+        {customer?.firstName ? (<Link href="/my-account">Hola! {customer.firstName}</Link>) : (<Link href="/login">Login</Link>)}
+        <NoSSRShoppingCart />
+      </div>
+    </header>)
 }

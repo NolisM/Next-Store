@@ -21,7 +21,7 @@ export const Description = () => {
             </button>
             <div className={styles.Description__text}>
                 <h2>Bring the future today</h2>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit obcaecati odit enim autem quo molestias harum facilis rem, consectetur aut quisquam, beatae alias atque, vitae id. Nihil rem impedit eaque!</p>
+                <p>Future World: Your Gateway to Tomorrow&apos;s Tech! Dive into a world of cutting-edge gadgets and gear. Stay ahead of the curve and redefine your digital lifestyle with us.</p>
 
             </div>
         </section>
